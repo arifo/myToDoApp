@@ -35,7 +35,7 @@ const Task = ({ item, onComplete, onEdit, onDelete }) => {
         onPress={item => onEdit(item)}
       >
         <Text style={styles.noteText}>{item.time}</Text>
-        <Text style={styles.noteText}>{item.text}</Text>
+        <Text style={[styles.noteText, { paddingLeft: 10 }]}>{item.text}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -66,7 +66,7 @@ const styles = {
     color: "#fff",
     fontSize: 14,
     fontWeight: "500",
-    paddingLeft: 10,
+
     textAlign: "left",
     textShadowColor: "#000",
     textShadowRadius: 1
@@ -74,18 +74,18 @@ const styles = {
   textContainer: {
     flexDirection: "row",
     paddingVertical: 12,
-    flex: 0.8
+    flex: 1
   },
   iconsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 12,
-    flex: 0.1
+    paddingHorizontal: 12
+    // flex: 0.1
   },
   image: {
     width: 18,
     height: 18,
-    tintColor: "#fff",
-    marginHorizontal: 4
+    tintColor: "#fff"
+    // marginHorizontal: 4
   }
 };
