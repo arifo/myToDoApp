@@ -17,34 +17,37 @@ const Task = ({ item, onComplete, onEdit, onDelete }) => {
   }
   return (
     <View style={[styles.noteContainer, { backgroundColor: checkPriority }]}>
-      <View style={styles.textContainer}>
-        <Text style={styles.noteText}>{item.time}</Text>
-        <Text style={styles.noteText}>{item.text}</Text>
-      </View>
-
-      <View style={styles.iconsContainer}>
-        <TouchableOpacity onPress={item => onComplete(item)}>
+      {!item.completed && (
+        <TouchableOpacity
+          style={styles.iconsContainer}
+          onPress={item => onComplete(item)}
+        >
           <Image
             style={styles.image}
             source={require("../../img/check.png")}
             resizeMode="contain"
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={item => onEdit(item)}>
-          <Image
-            style={styles.image}
-            source={require("../../img/pencil.png")}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={item => onDelete(item)}>
-          <Image
-            style={styles.image}
-            source={require("../../img/trash.png")}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
+      )}
+      <TouchableOpacity
+        style={styles.textContainer}
+        activeOpacity={0.8}
+        onPress={item => onEdit(item)}
+      >
+        <Text style={styles.noteText}>{item.time}</Text>
+        <Text style={styles.noteText}>{item.text}</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.iconsContainer}
+        onPress={item => onDelete(item)}
+      >
+        <Image
+          style={styles.image}
+          source={require("../../img/trash.png")}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -77,8 +80,7 @@ const styles = {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 12,
-    marginRight: 10,
-    flex: 0.2
+    flex: 0.1
   },
   image: {
     width: 18,

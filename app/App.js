@@ -1,29 +1,30 @@
-import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { persistStore, persistReducer } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import storage from "redux-persist/lib/storage";
+import RootNavigator from "./RootNavigator";
 
-import Home from "./Home";
+import reducer from "./redux/reducer";
 
-export default class App extends Component {
-  render() {
-    return <Home />;
-  }
-}
+const persistConfig = {
+  key: "root",
+  storage
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  }
-});
+const persistedReducer = persistReducer(persistConfig, reducer);
+let store = createStore(persistedReducer);
+let persistor = persistStore(store);
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RootNavigator />
+      </PersistGate>
+    </Provider>
+  );
+};
+
+export default App;

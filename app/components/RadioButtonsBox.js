@@ -47,7 +47,7 @@ const RadioButtonsBox = ({
 export default RadioButtonsBox;
 
 const styles = StyleSheet.create({
-  container: { marginBottom: 15 },
+  container: { marginVertical: 12 },
   roundBorder: {
     flexDirection: "row",
     alignItems: "center",
@@ -69,12 +69,11 @@ const styles = StyleSheet.create({
   priorityText: {
     fontSize: 14,
     fontWeight: "500",
-    paddingTop: 15,
     paddingLeft: 12
   },
   priorityButtons: {
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingVertical: 15
+    paddingTop: 12
   }
 });
